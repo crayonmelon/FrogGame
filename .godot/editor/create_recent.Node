@@ -1,0 +1,14 @@
+Node3D
+Node
+RemoteTransform3D
+DirectionalLight3D
+Sprite2D
+CanvasLayer
+SubViewport
+CollisionShape3D
+CharacterBody3D
+AnimationPlayer
+CharacterBody2D
+Sprite3D
+Camera3D
+MeshInstance3D
