@@ -7,8 +7,6 @@
 [ext_resource type="Shader" path="res://outline.gdshader" id="6_f6xjg"]
 [ext_resource type="Texture2D" uid="uid://bd4epkb7r6wq8" path="res://f126_126col.tif-126col.png" id="6_ntj8p"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_x2o3j"]
-
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g448s"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
@@ -162,6 +160,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_j37is")
 
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_6w0df"]
+shape = 0
+size = 0.2
+section_length = 0.05
+
 [node name="World" type="Node3D"]
 
 [node name="EveryCam" type="Camera3D" parent="."]
@@ -186,7 +189,6 @@ size = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(303.439, 0, 0, 0, 1, 0, 0, 0, 272.548, 0, 0, 0)
-mesh = SubResource("BoxMesh_x2o3j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
@@ -252,3 +254,10 @@ transform = Transform3D(0.00248976, -0.000553283, -0.389988, -0.389936, -0.00172
 layers = 2
 mesh = SubResource("ArrayMesh_ii08e")
 skeleton = NodePath("")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Car2/CarBody/wels"]
+transform = Transform3D(4.37116e-08, 1, -8.7423e-08, 1, -4.37115e-08, 1.42109e-14, -3.55271e-15, -8.74229e-08, -1, 3.23202, -8.71609, 2.5946)
+mesh = SubResource("RibbonTrailMesh_6w0df")
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+color = Color(0, 0, 0, 1)
