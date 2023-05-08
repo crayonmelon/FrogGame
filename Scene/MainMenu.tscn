@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://c64vtqvqm0clr"]
+
+[ext_resource type="FontFile" uid="uid://djk8n7fmjlere" path="res://Fonts/ColaKind.ttf" id="1_gpogg"]
+[ext_resource type="Script" path="res://Script/mainMenu.gd" id="1_hgi5f"]
+[ext_resource type="Theme" uid="uid://tetwijyjvfyk" path="res://Default.tres" id="1_iukpm"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_hgi5f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="frog+player_button" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_top = 0.883
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = 15.24
+offset_right = -712.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("1_iukpm")
+theme_override_fonts/font = ExtResource("1_gpogg")
+text = "Frog VS Car"
+
+[node name="car_player_button" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_top = 0.883
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 412.0
+offset_top = 3.23999
+offset_right = -399.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("1_iukpm")
+theme_override_fonts/font = ExtResource("1_gpogg")
+text = "Car VS Frog"
+
+[node name="2_player_button" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -81.0
+offset_right = -110.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("1_iukpm")
+theme_override_fonts/font = ExtResource("1_gpogg")
+text = "Two Player"
+
+[connection signal="pressed" from="CanvasLayer/frog+player_button" to="." method="_on_frogplayer_button_pressed"]

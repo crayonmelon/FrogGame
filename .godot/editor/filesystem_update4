@@ -1,5 +1,12 @@
-res://world.tscn
-res://outline.gdshader
-res://CarControls.gd
-res://trail.gdshader
-res://trailquad.gdshader
+res://Scene/world.tscn
+res://Script/CameraFollowScript.gd
+res://Script/CarControls.gd
+res://Scene/MainMenu.tscn
+res://Default.tres
+res://Scene/mainMenu.gd
+res://Scene/Transistion.tscn
+res://Scene/SceneTransistion.gd
+res://Scene/PlayerVSCar.tscn
+res://Scene/TwoPlayer.tscn
+res://Scene/Characters/frog_player.tscn
+res://Scene/Characters/car.tscn

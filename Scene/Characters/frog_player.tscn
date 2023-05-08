@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0326dn4je0lt"]
+
+[ext_resource type="Script" path="res://Script/FrogController.gd" id="1_jlcur"]
+[ext_resource type="Texture2D" uid="uid://cjdqihj703x7j" path="res://spritesheet/Spritesheet/froggysheet.png" id="2_a8ha4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tcrpe"]
+size = Vector3(1, 1.13831, 1)
+
+[sub_resource type="Animation" id="Animation_hh8js"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_bujd1"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2ndbe"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rlbqv"]
+_data = {
+"RESET": SubResource("Animation_hh8js"),
+"idle": SubResource("Animation_bujd1"),
+"walk": SubResource("Animation_2ndbe")
+}
+
+[node name="FrogPlayer" type="CharacterBody3D" groups=["CameraTrack"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_jlcur")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tcrpe")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 2.12132, -2.12132, 0, 2.12132, 2.12132, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("2_a8ha4")
+hframes = 3
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rlbqv")
+}
