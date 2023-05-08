@@ -10,3 +10,6 @@ res://Scene/PlayerVSCar.tscn
 res://Scene/TwoPlayer.tscn
 res://Scene/Characters/frog_player.tscn
 res://Scene/Characters/car.tscn
+res://Scene/Characters/carAI.tscn
+res://Scene/Characters/CarAI.gd
+res://Script/FrogController.gd

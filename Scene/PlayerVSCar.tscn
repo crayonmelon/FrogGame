@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2ikmvtdp0yjb"]
+[gd_scene load_steps=13 format=3 uid="uid://d2ikmvtdp0yjb"]
 
 [ext_resource type="Script" path="res://Script/FrogGame.gd" id="1_o34ok"]
 [ext_resource type="Script" path="res://Script/CameraFollowScript.gd" id="2_ol4an"]
+[ext_resource type="PackedScene" uid="uid://d0326dn4je0lt" path="res://Scene/Characters/frog_player.tscn" id="5_07aa0"]
+[ext_resource type="PackedScene" uid="uid://b866g7wryufxx" path="res://Scene/Characters/carAI.tscn" id="6_6edgh"]
 [ext_resource type="Shader" path="res://Shader/outline.gdshader" id="9_btpv1"]
 [ext_resource type="Texture2D" uid="uid://f38k86r5ax3w" path="res://spritesheet/Arena/sand.png" id="10_fca1i"]
 
@@ -85,3 +87,9 @@ mesh = SubResource("BoxMesh_t0kog")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_kwb0g")
+
+[node name="FrogPlayer" parent="." instance=ExtResource("5_07aa0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 0)
+
+[node name="Car3" parent="." instance=ExtResource("6_6edgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

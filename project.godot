@@ -16,7 +16,7 @@ config/icon="res://spritesheet/icon.svg"
 
 [autoload]
 
-_Scene_Transistion="*res://Scene/Transistion.tscn"
+Transistion="*res://Scene/Transistion.tscn"
 
 [display]
 

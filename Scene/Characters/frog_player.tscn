@@ -60,7 +60,7 @@ _data = {
 "walk": SubResource("Animation_2ndbe")
 }
 
-[node name="FrogPlayer" type="CharacterBody3D" groups=["CameraTrack"]]
+[node name="FrogPlayer" type="CharacterBody3D" groups=["CameraTrack", "Frog"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jlcur")
 
