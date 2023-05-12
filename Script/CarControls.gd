@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var car_body = $"../CarBody"
 @onready var carnoise = $"../CarBody/the car/carnoise"
+var car_dead = preload("res://Scene/Characters/car_dead.tscn")
 
 const SPEED = 20
 const JUMP_VELOCITY = 4.5
@@ -48,8 +49,11 @@ func _physics_process(delta):
 	velocity = velocity.limit_length(MAX_SPEED)
 	rotate_y(rotation_direction)
 	
-	print(rangeChange(abs(velocity.x), 5, 0, 0, -40))
-	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().has_method("Collision_With_Car"):
+			collision.get_collider().Collision_With_Car((collision.get_collider().global_position - global_position) + Vector3.UP)
+			
 	carnoise.volume_db = rangeChange(abs(velocity.x), 10, 0, 0, -20)
 	move_and_slide()
 	screen_loop()
@@ -59,6 +63,14 @@ func rangeChange(OldValue, OldMax, OldMin, NewMax, NewMin):
 	var NewRange = (NewMax - NewMin)  
 	return (((OldValue - OldMin) * NewRange) / OldRange) + NewMin
 
-
 func screen_loop():
 	position.x = wrapf(position.x,-30, 30)
+
+func Car_Die():
+	var car_died_inst = car_dead.instantiate()
+	car_died_inst.position = global_position
+	car_died_inst.rotation = global_rotation
+	
+	get_tree().get_root().add_child(car_died_inst)
+	car_body.queue_free()
+	queue_free()

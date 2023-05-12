@@ -53,7 +53,5 @@ func set_camera_scale(points):
 	
 	scale = (furthest_distance)*2
 	
-	print(furthest_distance)
-	
 	size = scale
 	car_cam.size = scale

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Script/cubeCollision.gd" id="1_wjb4o"]
+[ext_resource type="Texture2D" uid="uid://deqr778nk8yo7" path="res://spritesheet/crate.png" id="2_ghhoc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tvwnj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_erc5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjx8l"]
+shading_mode = 0
+albedo_texture = ExtResource("2_ghhoc")
+uv1_scale = Vector3(3, 2, 3)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2cc3i"]
+material = SubResource("StandardMaterial3D_kjx8l")
+
+[node name="Crate" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.222022, 1.37347, 15.3148)
+
+[node name="Bitches" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 3.07409e-10, 1.16415e-10, -3.4961e-09, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+mass = 3.5
+physics_material_override = SubResource("PhysicsMaterial_tvwnj")
+script = ExtResource("1_wjb4o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bitches"]
+transform = Transform3D(1, 2.96495e-10, 5.99539e-08, -6.49925e-09, 1, -5.58794e-09, -2.99187e-08, 7.45058e-09, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_erc5n")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Bitches"]
+remote_path = NodePath("../../Crate_Mesh")
+update_rotation = false
+
+[node name="Crate_Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 3.4961e-09, 1.42535e-23, -3.4961e-09, 1, -1.86264e-09, -6.51199e-18, 1.86264e-09, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("BoxMesh_2cc3i")
+skeleton = NodePath("../..")

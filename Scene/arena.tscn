@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvjy7rbxwrxxi"]
+
+[ext_resource type="Texture2D" uid="uid://f38k86r5ax3w" path="res://spritesheet/Arena/sand.png" id="1_3n8hx"]
+[ext_resource type="Texture2D" uid="uid://dnv3adxj8nw40" path="res://spritesheet/Arena/black.png" id="2_oy0hk"]
+[ext_resource type="Texture2D" uid="uid://v6bwp0831hxj" path="res://spritesheet/Arena/crowded.png" id="2_xx4gp"]
+[ext_resource type="Texture2D" uid="uid://dol3in0r7ru00" path="res://spritesheet/Arena/Walls_Tunnel.png" id="3_au1e5"]
+[ext_resource type="Shader" path="res://Shader/lowerpallet.gdshader" id="4_n8rwm"]
+[ext_resource type="Texture2D" uid="uid://dj6e8hhd3a1pa" path="res://spritesheet/Arena/walls.png" id="5_n4dvu"]
+[ext_resource type="Texture2D" uid="uid://c83myjpfkyt4v" path="res://spritesheet/frog_crusify.png" id="7_yxjug"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7366i"]
+shader = ExtResource("4_n8rwm")
+shader_parameter/from = null
+shader_parameter/to = null
+shader_parameter/tolerance = null
+
+[node name="Arena" type="Node3D"]
+transform = Transform3D(-8, 6.99382e-07, 0, 3.0571e-14, 3.49691e-07, 8, 6.99382e-07, 8, -3.49691e-07, 0, 0, 2)
+
+[node name="Sand" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, 8.74228e-08, 1, -8.74228e-08, -2.26134e-22, -8.74228e-08, -1, -8.1843e-08, -0.936175, 4.09215e-08)
+texture_filter = 0
+render_priority = -10
+texture = ExtResource("1_3n8hx")
+
+[node name="Black" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, 8.74228e-08, 1, -8.74228e-08, -1.0176e-21, -8.74228e-08, -1, -0.0244675, -0.0144233, 6.30463e-10)
+texture_filter = 0
+render_priority = -8
+texture = ExtResource("2_oy0hk")
+
+[node name="crowd" type="Sprite3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -7.64274e-15, 8.74228e-08, 1, -8.74228e-08, -9.6107e-22, -8.74228e-08, -1, -0.237713, -0.582701, 0.0834508)
+texture_filter = 0
+render_priority = -9
+texture = ExtResource("2_xx4gp")
+
+[node name="walls" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09278e-09, -0.0125, 5.46392e-10)
+material_overlay = SubResource("ShaderMaterial_7366i")
+cast_shadow = 0
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("5_n4dvu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="walls"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.308602)
+polygon = PackedVector2Array(-3.19801, 1.54618, -3.67454, 1.16711, -3.80404, 0.837952, -3.98751, 0.810972, -4.82928, 2.81829, 3.34109, 2.91835, 4.27342, 1.79515, 3.95002, 0.843347, 3.73418, 0.848743, 3.5723, 1.23186, 3.22156, 1.49087, 2.79527, 1.67973, 2.33661, 1.81463, 1.84558, 1.91176, 0.97682, 1.95492, -1.57108, 1.94007, -2.31604, 1.85444)
+
+[node name="wall_tunnel" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06581e-14, 0, 0.336929)
+layers = 2
+texture_filter = 0
+render_priority = 100
+texture = ExtResource("3_au1e5")
+
+[node name="Crusified" type="Sprite3D" parent="."]
+transform = Transform3D(1, -2.56056e-08, -6.18173e-08, -2.56055e-08, 0.707107, -0.707107, 6.18172e-08, 0.707107, 0.707107, -2.14601, 0.600336, -2.62415e-08)
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("7_yxjug")

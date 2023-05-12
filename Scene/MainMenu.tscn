@@ -62,3 +62,5 @@ theme_override_fonts/font = ExtResource("1_gpogg")
 text = "Two Player"
 
 [connection signal="pressed" from="CanvasLayer/frog+player_button" to="." method="_on_frogplayer_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/car_player_button" to="." method="_on_car_player_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/2_player_button" to="." method="_on_2_player_button_pressed"]

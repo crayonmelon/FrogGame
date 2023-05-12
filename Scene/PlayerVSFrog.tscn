@@ -1,0 +1,213 @@
+[gd_scene load_steps=16 format=3 uid="uid://fr7em7riyk48"]
+
+[ext_resource type="Script" path="res://Script/FrogSpawner.gd" id="1_hc2ke"]
+[ext_resource type="Script" path="res://Script/CameraFollowScript.gd" id="2_6bjnr"]
+[ext_resource type="Texture2D" uid="uid://oq64n0pbxo27" path="res://spritesheet/Arena/cageDoor-Sheet.png" id="2_08n4s"]
+[ext_resource type="Shader" path="res://Shader/outline.gdshader" id="3_brjdb"]
+[ext_resource type="PackedScene" uid="uid://cvjy7rbxwrxxi" path="res://Scene/arena.tscn" id="4_u4e03"]
+[ext_resource type="PackedScene" path="res://Scene/Characters/crate.tscn" id="5_4upaa"]
+[ext_resource type="PackedScene" uid="uid://damlj6l53hn1j" path="res://Scene/Characters/car.tscn" id="5_idhtn"]
+[ext_resource type="PackedScene" path="res://Scene/Characters/FrogAIBig.tscn" id="7_grv2s"]
+
+[sub_resource type="Animation" id="Animation_xubki"]
+resource_name = "CageOpen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Spawn_Area_2/Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 5]
+}
+
+[sub_resource type="Animation" id="Animation_os6oj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Spawn_Area_2/Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cdtv"]
+_data = {
+"CageOpen": SubResource("Animation_xubki"),
+"RESET": SubResource("Animation_os6oj")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m2tht"]
+viewport_path = NodePath("Global_Spawner/SubViewport")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g448s"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpg6p"]
+shader = ExtResource("3_brjdb")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 1.966
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w6s41"]
+viewport_path = NodePath("CarView")
+
+[node name="World" type="Node3D"]
+
+[node name="Global_Spawner" type="Node3D" parent="."]
+script = ExtResource("1_hc2ke")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Global_Spawner"]
+root_node = NodePath("../Spawn_Area_1/Sprite3D")
+libraries = {
+"": SubResource("AnimationLibrary_5cdtv")
+}
+
+[node name="Spawn_Area_1" type="Node3D" parent="Global_Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 14)
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner/Spawn_Area_1"]
+transform = Transform3D(-8, -1.99243e-08, 7.70219e-07, 7.65552e-07, 0.697239, 7.96956, -8.69759e-08, 7.96956, -0.697239, 0.406149, 0.116265, 1.32892)
+texture_filter = 0
+texture = ExtResource("2_08n4s")
+hframes = 6
+
+[node name="Spawn_Area_2" type="Node3D" parent="Global_Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 14)
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner/Spawn_Area_2"]
+transform = Transform3D(-8, -1.99243e-08, 7.70219e-07, 7.65552e-07, 0.697239, 7.96956, -8.69759e-08, 7.96956, -0.697239, -0.230949, 0.137362, 1.57006)
+flip_h = true
+texture_filter = 0
+texture = ExtResource("2_08n4s")
+hframes = 6
+frame = 1
+
+[node name="Timer" type="Timer" parent="Global_Spawner"]
+wait_time = 30.0
+autostart = true
+
+[node name="SubViewport" type="SubViewport" parent="Global_Spawner"]
+transparent_bg = true
+size = Vector2i(64, 34)
+
+[node name="Label" type="Label" parent="Global_Spawner/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10001001"
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner"]
+transform = Transform3D(-10.7187, 4.68528e-07, -7.57103e-08, -2.42528e-07, 7.57924, 0.707107, 9.05126e-07, 7.57924, -0.707107, 0, 7, 22)
+texture = SubResource("ViewportTexture_m2tht")
+
+[node name="EveryCam" type="Camera3D" parent="."]
+transform = Transform3D(-1, 8.74227e-08, 1.07995e-14, 4.37114e-08, 0.5, 0.866025, 7.57103e-08, 0.866025, -0.5, 0, 16.4515, -7)
+cull_mask = 1
+projection = 1
+size = 20.0
+script = ExtResource("2_6bjnr")
+pos_offset = Vector3(0, 100, -10)
+
+[node name="CarView" type="SubViewport" parent="."]
+transparent_bg = true
+scaling_3d_mode = 1
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 360)
+render_target_update_mode = 4
+
+[node name="CarCam" type="Camera3D" parent="CarView"]
+transform = Transform3D(-1, -6.90814e-08, -4.43274e-10, -3.49246e-08, 0.5, 0.866025, -5.96046e-08, 0.866025, -0.5, 0, 16.4515, -7)
+cull_mask = 2
+projection = 1
+current = true
+size = 20.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(303.439, 0, 0, 0, 1, 0, 0, 0, 272.548, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_g448s")
+
+[node name="MainGame" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_gpg6p")
+position = Vector2(477.031, 360.773)
+scale = Vector2(1.9957, 1.9957)
+texture = SubResource("ViewportTexture_w6s41")
+
+[node name="Arena" parent="." instance=ExtResource("4_u4e03")]
+transform = Transform3D(-8, 6.99382e-07, 0, 3.0571e-14, 3.49691e-07, 8, 6.99382e-07, 8, -3.49691e-07, 0.00769067, 0.00166345, 1.9871)
+
+[node name="Crates" type="Node3D" parent="."]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -25.5963, 1.58999, 7.63035)
+
+[node name="Crate" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 1.98682, -1.06414, -0.91521)
+
+[node name="Crate2" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 2.12079, -1, 1.31684)
+
+[node name="Crate3" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(-0.744195, 0, -0.667963, 0, 1, 0, 0.667963, 0, -0.744195, 2.12079, 0, 1.31684)
+
+[node name="Crate7" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 2.12079, 1.01714, 1.31684)
+
+[node name="Crate8" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(-0.861541, 0, 0.507689, 0, 1, 0, -0.507689, 0, -0.861541, 0.933432, -1.04928, 2.00236)
+
+[node name="Crate4" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.216524, 2)
+
+[node name="Crate5" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Crate6" parent="Crates" instance=ExtResource("5_4upaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Car2" parent="." instance=ExtResource("5_idhtn")]
+
+[node name="FrogAIBig" parent="." instance=ExtResource("7_grv2s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 1, -4)
+
+[connection signal="timeout" from="Global_Spawner/Timer" to="Global_Spawner" method="_on_timer_timeout"]

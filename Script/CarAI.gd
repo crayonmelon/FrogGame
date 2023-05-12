@@ -29,6 +29,9 @@ func _physics_process(delta):
 	look_at(get_tree().get_nodes_in_group("Frog")[0].global_position , Vector3.UP)
 	
 	carnoise.volume_db = rangeChange(abs(velocity.x), 10, 0, 0, -20)
+	
+	var cols = get_slide_collision(1)
+	
 	move_and_slide()
 	screen_loop()
 	
@@ -39,4 +42,4 @@ func rangeChange(OldValue, OldMax, OldMin, NewMax, NewMin):
 
 
 func screen_loop():
-	position.x = wrapf(position.x,-30, 30)
+	global_position.x = wrapf(global_position.x,-30, 30)

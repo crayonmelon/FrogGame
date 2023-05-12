@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Script/GameOver.gd" id="1_2b4wb"]
+[ext_resource type="Theme" uid="uid://tetwijyjvfyk" path="res://Default.tres" id="2_fnxvu"]
+[ext_resource type="FontFile" uid="uid://djk8n7fmjlere" path="res://Fonts/ColaKind.ttf" id="3_1l7t7"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_2b4wb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_menu_button" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_top = 0.883
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 412.0
+offset_top = 3.23999
+offset_right = -399.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("2_fnxvu")
+theme_override_fonts/font = ExtResource("3_1l7t7")
+text = "MAIN MENU"
+
+[node name="Title" type="Label" parent="."]
+offset_left = 331.0
+offset_top = 27.0
+offset_right = 666.0
+offset_bottom = 112.0
+theme = ExtResource("2_fnxvu")
+theme_override_fonts/font = ExtResource("3_1l7t7")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 331.0
+offset_top = 212.0
+offset_right = 666.0
+offset_bottom = 297.0
+theme = ExtResource("2_fnxvu")
+theme_override_fonts/font = ExtResource("3_1l7t7")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/main_menu_button" to="." method="_on_main_menu_button_pressed"]
