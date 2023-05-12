@@ -4,6 +4,7 @@ extends Camera3D
 @export var pos_offset = Vector3(10,10,10)
 
 var camera_follow
+var desired_pos
 
 func _process(delta):
 	
@@ -11,19 +12,21 @@ func _process(delta):
 	if points.size() == 0:
 		return
 	
-	set_camera_pos(points)
-	set_camera_scale(points)
+	set_camera_pos(points, delta)
+	set_camera_scale(points, delta)
 	
-func set_camera_pos(points):
+func set_camera_pos(points, delta):
 	
+	var camera_pos = mid_point(points) + pos_offset
 	
-	var camera_pos = mid_point(points)
+	var diff_x = camera_pos.x - global_position.x 
+	var diff_z = camera_pos.z - global_position.z 
 	
-	global_position.x = camera_pos.x + pos_offset.x
-	global_position.z = camera_pos.z + pos_offset.z
+	global_position.x = lerp(global_position.x, camera_pos.x, .01)
+	global_position.z = lerp(global_position.z, camera_pos.z, .01)
 	
-	car_cam.global_position.x = camera_pos.x + pos_offset.x
-	car_cam.global_position.z = camera_pos.z + pos_offset.z
+	car_cam.global_position.x = lerp(global_position.x, camera_pos.x , .01)
+	car_cam.global_position.z = lerp (global_position.z, camera_pos.z, .01)
 
 func mid_point(points):
 	
@@ -39,9 +42,9 @@ func mid_point(points):
 		
 	return Vector3((x_vals/points.size()), 0,(z_vals/points.size()))
 	
-func set_camera_scale(points):
+func set_camera_scale(points, delta):
+	
 	var scale = 20
-
 	var furthest_distance = 0
 	
 	for point in points:
@@ -53,5 +56,7 @@ func set_camera_scale(points):
 	
 	scale = (furthest_distance)*2
 	
-	size = scale
-	car_cam.size = scale
+	var diff = size - scale
+	
+	size = lerp(size, scale, .01)
+	car_cam.size = lerp(size, scale, .01)

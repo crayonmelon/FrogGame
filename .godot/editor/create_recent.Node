@@ -1,3 +1,5 @@
+AudioStreamPlayer
+Area3D
 Sprite3D
 AnimationPlayer
 AnimationTree
@@ -10,7 +12,6 @@ SubViewport
 Timer
 CollisionShape3D
 RemoteTransform3D
-Area3D
 StaticBody3D
 Area2D
 CollisionPolygon3D

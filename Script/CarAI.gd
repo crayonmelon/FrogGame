@@ -26,7 +26,8 @@ func _physics_process(delta):
 	velocity += -transform.basis.z * SPEED * delta
 	velocity = velocity.limit_length(MAX_SPEED)
 	
-	look_at(get_tree().get_nodes_in_group("Frog")[0].global_position , Vector3.UP)
+	if get_tree().get_nodes_in_group("Frog").size() > 0:
+		look_at(get_tree().get_nodes_in_group("Frog")[0].global_position , Vector3.UP)
 	
 	carnoise.volume_db = rangeChange(abs(velocity.x), 10, 0, 0, -20)
 	
@@ -40,6 +41,8 @@ func rangeChange(OldValue, OldMax, OldMin, NewMax, NewMin):
 	var NewRange = (NewMax - NewMin)  
 	return (((OldValue - OldMin) * NewRange) / OldRange) + NewMin
 
+func Car_Frog():
+	pass
 
 func screen_loop():
 	global_position.x = wrapf(global_position.x,-30, 30)

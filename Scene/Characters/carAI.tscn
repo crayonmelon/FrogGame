@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://c4bd6j37kxtw4"]
 
 [ext_resource type="Texture2D" uid="uid://bd4epkb7r6wq8" path="res://Model/Car/f126_126col.tif-126col.png" id="1_aqt6l"]
 [ext_resource type="AudioStream" uid="uid://bmyxq7a3ldvvv" path="res://Audio/carnoise.ogg" id="2_bog2p"]
@@ -93,7 +93,7 @@ size = 0.2
 section_length = 0.05
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvfp4"]
-size = Vector3(4.11406, 1.63707, 2.01227)
+size = Vector3(4.59724, 1.63707, 2.01227)
 
 [node name="Car2" type="Node3D"]
 
@@ -101,7 +101,7 @@ size = Vector3(4.11406, 1.63707, 2.01227)
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="the car" type="MeshInstance3D" parent="CarBody" groups=["CameraTrack"]]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 7.64274e-15, 8.74228e-08, -8.74228e-08, 1.31134e-07, 1, -3.82137e-15, -1, 1.31134e-07, -4.19545e-10, -0.00959807, 0.431304)
 layers = 2
 mesh = SubResource("ArrayMesh_ngnd1")
 skeleton = NodePath("")
@@ -113,7 +113,7 @@ pitch_scale = 0.73
 autoplay = true
 
 [node name="wels" type="MeshInstance3D" parent="CarBody"]
-transform = Transform3D(-0.00204206, -8.74081e-09, -0.389996, 3.42731e-08, -0.0999832, 3.3916e-08, -0.389996, -8.74081e-09, 0.00204207, -0.881992, -0.00959801, 0.431304)
+transform = Transform3D(-0.00204206, -1.77636e-15, -0.389996, -6.81891e-08, 0.0999832, 3.57062e-10, 0.389996, 1.74816e-08, -0.00204207, -0.881992, 5.71796e-08, 0)
 layers = 2
 mesh = SubResource("ArrayMesh_ii08e")
 skeleton = NodePath("")
@@ -138,10 +138,11 @@ color = Color(0, 0, 0, 1)
 
 [node name="Car" type="CharacterBody3D" parent="."]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("4_qvavo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.08512, 0.340913)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.08512, 0.0297036)
 shape = SubResource("BoxShape3D_bvfp4")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Car"]

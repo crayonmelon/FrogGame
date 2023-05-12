@@ -15,7 +15,7 @@ func GameOver():
 		" + str(score)
 	else: 
 		score_text.text = "TIME
-		" + str(time)
+		" + str(time).pad_decimals(2) 
 	
 func UpdateGameOver(frogMode, time, score):
 	self.frogMode = frogMode

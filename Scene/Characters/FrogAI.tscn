@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://bx4yd7dcmoxlx"]
 
 [ext_resource type="Script" path="res://Script/FrogAI.gd" id="1_w5ge5"]
 [ext_resource type="Texture2D" uid="uid://cjdqihj703x7j" path="res://spritesheet/Spritesheet/froggysheet.png" id="2_i6d2a"]

@@ -28,5 +28,7 @@ func _on_body_entered(body):
 	
 	if get_parent().has_method("FrogDead"):
 		get_parent().FrogDead(self)
+		
+	GLOBALS.cheers_player.play()
+	
 	queue_free()
-	pass

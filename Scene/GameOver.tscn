@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://bvscir7jyqqnp"]
 
 [ext_resource type="Script" path="res://Script/GameOver.gd" id="1_2b4wb"]
 [ext_resource type="Theme" uid="uid://tetwijyjvfyk" path="res://Default.tres" id="2_fnxvu"]

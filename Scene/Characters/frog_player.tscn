@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cjdqihj703x7j" path="res://spritesheet/Spritesheet/froggysheet.png" id="2_a8ha4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcrpe"]
-size = Vector3(1, 1.13831, 1)
+size = Vector3(1, 1.34499, 1)
 
 [sub_resource type="Animation" id="Animation_hh8js"]
 length = 0.001
@@ -62,6 +62,7 @@ _data = {
 
 [node name="FrogPlayer" type="CharacterBody3D" groups=["CameraTrack", "Frog"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
 script = ExtResource("1_jlcur")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -79,3 +80,12 @@ autoplay = "walk"
 libraries = {
 "": SubResource("AnimationLibrary_rlbqv")
 }
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_tcrpe")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

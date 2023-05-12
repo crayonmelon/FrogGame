@@ -43,6 +43,7 @@ func FrogDead(frog):
 	if frogs.is_empty():
 		spawn_amount = spawn_amount * 4
 		SpawnFrog()
+		GLOBALS.Play_Cheers()
 
 func _on_timer_timeout():
 	#SMELLY CODE
