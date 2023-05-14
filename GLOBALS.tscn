@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5mna33d0xb6v"]
+[gd_scene load_steps=4 format=3 uid="uid://c5mna33d0xb6v"]
 
 [ext_resource type="Script" path="res://GLOBALS.gd" id="1_xwg1i"]
 [ext_resource type="AudioStream" uid="uid://dnyt4asjxqu5j" path="res://Audio/TheCrowd/crowd.ogg" id="2_ytxv2"]
+[ext_resource type="AudioStream" uid="uid://bdnhwm68moj22" path="res://Audio/announcers/CarThroughThem.ogg" id="3_jcyes"]
 
 [node name="GLOBALS" type="Node"]
 script = ExtResource("1_xwg1i")
@@ -14,3 +15,13 @@ bus = &"Crowd"
 
 [node name="CheersPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
+
+[node name="AnnouncersPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jcyes")
+bus = &"Annonuncers"
+
+[node name="Announcer_rand" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Announcer_rand" to="." method="_on_announcer_rand_timeout"]

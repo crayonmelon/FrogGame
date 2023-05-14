@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @export var frogDie = preload("res://Scene/Characters/Frog_die.tscn")
 
+@export var is_multiplayer = false
+
 var WALK = 10
 const SPRINT = 20
 var speed = WALK
@@ -41,6 +43,10 @@ func Frog_Death():
 	print("wow")
 	var frogdie_inst = frogDie.instantiate()
 	frogdie_inst.position = global_position
+	GLOBALS.Explosion_Start(global_position)
+	visible = false
+	await get_tree().create_timer(1).timeout
+	
 	
 	get_tree().get_root().get_node("World/Global_Spawner").Game_Over()
 	queue_free()

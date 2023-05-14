@@ -27,8 +27,9 @@ func _physics_process(delta):
 	velocity = velocity.limit_length(MAX_SPEED)
 	
 	if get_tree().get_nodes_in_group("Frog").size() > 0:
-		look_at(get_tree().get_nodes_in_group("Frog")[0].global_position , Vector3.UP)
-	
+		var target = get_tree().get_nodes_in_group("Frog")[0].global_position
+		look_at(target , Vector3.UP)
+		
 	carnoise.volume_db = rangeChange(abs(velocity.x), 10, 0, 0, -20)
 	
 	var cols = get_slide_collision(1)

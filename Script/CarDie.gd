@@ -8,7 +8,7 @@ func _ready():
 	await get_tree().create_timer(.5).timeout
 	
 	$"..".queue_free()
-	_Scene_Transistion.Change_Scene("res://Scene/GameOver.tscn")
+	#_Scene_Transistion.Change_Scene("res://Scene/GameOver.tscn")
 	
 func Die():
 	apply_central_force(Vector3(1,1,1)*1000)

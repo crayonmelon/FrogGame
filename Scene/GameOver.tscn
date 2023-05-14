@@ -1,11 +1,198 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvscir7jyqqnp"]
+[gd_scene load_steps=13 format=3 uid="uid://bvscir7jyqqnp"]
 
 [ext_resource type="Script" path="res://Script/GameOver.gd" id="1_2b4wb"]
-[ext_resource type="Theme" uid="uid://tetwijyjvfyk" path="res://Default.tres" id="2_fnxvu"]
+[ext_resource type="Texture2D" uid="uid://f38k86r5ax3w" path="res://spritesheet/Arena/sand.png" id="2_chv31"]
+[ext_resource type="Theme" uid="uid://dlx4yti3l6pcy" path="res://Default.tres" id="2_fnxvu"]
 [ext_resource type="FontFile" uid="uid://djk8n7fmjlere" path="res://Fonts/ColaKind.ttf" id="3_1l7t7"]
+[ext_resource type="Texture2D" uid="uid://c83myjpfkyt4v" path="res://spritesheet/frog_crusify.png" id="3_8bxcs"]
+[ext_resource type="FontFile" uid="uid://cs7328aesw8pa" path="res://Fonts/superbrigadechrome.ttf" id="4_uc68f"]
+
+[sub_resource type="Animation" id="Animation_ryv2y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.90988, 3.06988)]
+}
+
+[sub_resource type="Animation" id="Animation_80k77"]
+resource_name = "scale"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 4.59479, 0.5),
+"update": 0,
+"values": [Vector2(1.90988, 3.06988), Vector2(1.91, 3.2), Vector2(1.90988, 3.06988)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4cvx"]
+_data = {
+"RESET": SubResource("Animation_ryv2y"),
+"scale": SubResource("Animation_80k77")
+}
+
+[sub_resource type="Animation" id="Animation_tnyc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Car4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Car3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Car2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Car:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ahoxa"]
+resource_name = "car_loop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(0.878431, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Car4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Car3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Car2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Car:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(0.878431, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qsxo"]
+_data = {
+"RESET": SubResource("Animation_tnyc6"),
+"car_loop": SubResource("Animation_ahoxa")
+}
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_2b4wb")
+
+[node name="Sand" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1954, -761)
+rotation = 3.14159
+scale = Vector2(5.29015, -5.29015)
+texture = ExtResource("2_chv31")
+
+[node name="Crusified" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(168, 629)
+scale = Vector2(4.80243, 3.39583)
+texture = ExtResource("3_8bxcs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -26,27 +213,108 @@ theme = ExtResource("2_fnxvu")
 theme_override_fonts/font = ExtResource("3_1l7t7")
 text = "MAIN MENU"
 
-[node name="Title" type="Label" parent="."]
-offset_left = 331.0
-offset_top = 27.0
-offset_right = 666.0
-offset_bottom = 112.0
+[node name="Score" type="Label" parent="."]
+modulate = Color(0.415686, 0.745098, 0.188235, 1)
+texture_filter = 1
+offset_left = 150.0
+offset_top = 235.0
+offset_right = 485.0
+offset_bottom = 320.0
+scale = Vector2(1.90988, 3.06988)
 theme = ExtResource("2_fnxvu")
 theme_override_fonts/font = ExtResource("3_1l7t7")
-theme_override_font_sizes/font_size = 64
-text = "Game Over"
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Score" type="Label" parent="."]
-offset_left = 331.0
-offset_top = 212.0
-offset_right = 666.0
-offset_bottom = 297.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Score"]
+autoplay = "scale"
+libraries = {
+"": SubResource("AnimationLibrary_p4cvx")
+}
+
+[node name="Scoreoutline" type="Label" parent="Score"]
+modulate = Color(0.415686, 0.745098, 0.188235, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 0.523582
+offset_top = 0.630505
+offset_right = 335.524
+offset_bottom = 85.6305
 theme = ExtResource("2_fnxvu")
 theme_override_fonts/font = ExtResource("3_1l7t7")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameOver" type="Node2D" parent="."]
+position = Vector2(23, -60)
+scale = Vector2(0.69707, 0.69707)
+
+[node name="CarAnimation" type="AnimationPlayer" parent="GameOver"]
+autoplay = "car_loop"
+libraries = {
+"": SubResource("AnimationLibrary_1qsxo")
+}
+
+[node name="Car5" type="Label" parent="GameOver"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 57.0
+offset_top = 125.0
+offset_right = 151.0
+offset_bottom = 163.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("4_uc68f")
+theme_override_font_sizes/font_size = 32
+text = "GameOver"
+
+[node name="Car4" type="Label" parent="GameOver"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 49.0
+offset_top = 117.0
+offset_right = 143.0
+offset_bottom = 155.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("4_uc68f")
+theme_override_font_sizes/font_size = 32
+text = "GameOver"
+
+[node name="Car3" type="Label" parent="GameOver"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 41.0
+offset_top = 108.0
+offset_right = 135.0
+offset_bottom = 146.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("4_uc68f")
+theme_override_font_sizes/font_size = 32
+text = "GameOver"
+
+[node name="Car2" type="Label" parent="GameOver"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 34.0
+offset_top = 102.0
+offset_right = 128.0
+offset_bottom = 140.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("4_uc68f")
+theme_override_font_sizes/font_size = 32
+text = "GameOver"
+
+[node name="Car" type="Label" parent="GameOver"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 26.0
+offset_top = 93.0
+offset_right = 120.0
+offset_bottom = 131.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("4_uc68f")
+theme_override_font_sizes/font_size = 32
+text = "GameOver"
 
 [connection signal="pressed" from="CanvasLayer/main_menu_button" to="." method="_on_main_menu_button_pressed"]

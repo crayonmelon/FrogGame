@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl4x2848gqsqj"]
+[gd_scene load_steps=3 format=3 uid="uid://dl4x2848gqsqj"]
 
 [ext_resource type="Script" path="res://Script/SceneTransistion.gd" id="1_ad0ih"]
+[ext_resource type="Texture2D" uid="uid://deqr778nk8yo7" path="res://spritesheet/crate.png" id="2_abbom"]
 
 [node name="Transistion" type="CanvasLayer"]
 script = ExtResource("1_ad0ih")
+
+[node name="Screen" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+
+[node name="Black" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(480, 360)
+scale = Vector2(-32.7658, -32.7658)
+texture = ExtResource("2_abbom")

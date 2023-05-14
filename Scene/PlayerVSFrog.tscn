@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fr7em7riyk48"]
+[gd_scene load_steps=15 format=3 uid="uid://fr7em7riyk48"]
 
 [ext_resource type="Script" path="res://Script/FrogSpawner.gd" id="1_hc2ke"]
 [ext_resource type="Script" path="res://Script/CameraFollowScript.gd" id="2_6bjnr"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cvjy7rbxwrxxi" path="res://Scene/arena.tscn" id="4_u4e03"]
 [ext_resource type="PackedScene" path="res://Scene/Characters/crate.tscn" id="5_4upaa"]
 [ext_resource type="PackedScene" uid="uid://damlj6l53hn1j" path="res://Scene/Characters/car.tscn" id="5_idhtn"]
-[ext_resource type="PackedScene" path="res://Scene/Characters/FrogAIBig.tscn" id="7_grv2s"]
 
 [sub_resource type="Animation" id="Animation_xubki"]
 resource_name = "CageOpen"
@@ -116,7 +115,7 @@ hframes = 6
 frame = 1
 
 [node name="Timer" type="Timer" parent="Global_Spawner"]
-wait_time = 30.0
+wait_time = 60.0
 autostart = true
 
 [node name="SubViewport" type="SubViewport" parent="Global_Spawner"]
@@ -126,13 +125,15 @@ size = Vector2i(64, 34)
 [node name="Label" type="Label" parent="Global_Spawner/SubViewport"]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "10001001"
 vertical_alignment = 1
 clip_text = true
 uppercase = true
 
 [node name="Sprite3D" type="Sprite3D" parent="Global_Spawner"]
-transform = Transform3D(-10.7187, 4.68528e-07, -7.57103e-08, -2.42528e-07, 7.57924, 0.707107, 9.05126e-07, 7.57924, -0.707107, 0, 7, 22)
+transform = Transform3D(-10.7187, 4.68528e-07, -7.57103e-08, -2.42528e-07, 7.57924, 0.707107, 9.05126e-07, 7.57924, -0.707107, -1.19942, 7.83182, 22.8318)
+render_priority = 3
 texture = SubResource("ViewportTexture_m2tht")
 
 [node name="EveryCam" type="Camera3D" parent="."]
@@ -179,7 +180,7 @@ texture = SubResource("ViewportTexture_w6s41")
 transform = Transform3D(-8, 6.99382e-07, 0, 3.0571e-14, 3.49691e-07, 8, 6.99382e-07, 8, -3.49691e-07, 0.00769067, 0.00166345, 1.9871)
 
 [node name="Crates" type="Node3D" parent="."]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -25.5963, 1.58999, 7.63035)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -3.3588, 1.58999, -14.751)
 
 [node name="Crate" parent="Crates" instance=ExtResource("5_4upaa")]
 transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 1.98682, -1.06414, -0.91521)
@@ -206,8 +207,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Car2" parent="." instance=ExtResource("5_idhtn")]
-
-[node name="FrogAIBig" parent="." instance=ExtResource("7_grv2s")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 1, -4)
 
 [connection signal="timeout" from="Global_Spawner/Timer" to="Global_Spawner" method="_on_timer_timeout"]

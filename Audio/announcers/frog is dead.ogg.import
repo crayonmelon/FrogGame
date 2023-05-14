@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cjt20prmivgny"
+path="res://.godot/imported/frog is dead.ogg-a84666566c0c5243f4a2abcf05c7f9ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/announcers/frog is dead.ogg"
+dest_files=["res://.godot/imported/frog is dead.ogg-a84666566c0c5243f4a2abcf05c7f9ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://cbnsh6f285wfn"]
 
 [ext_resource type="Texture2D" uid="uid://c1lqij4flq3e1" path="res://Model/Car/f126_wheels.tif-wheels.png" id="1_qeef1"]
 [ext_resource type="Texture2D" uid="uid://bd4epkb7r6wq8" path="res://Model/Car/f126_126col.tif-126col.png" id="2_3611t"]
@@ -42,6 +42,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o7jcu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcsee"]
+albedo_texture = ExtResource("2_3611t")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0q52w"]
 
@@ -118,5 +121,6 @@ skeleton = NodePath("")
 [node name="the car" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.416406, 0.897793, 0)
 layers = 2
+material_override = SubResource("StandardMaterial3D_fcsee")
 mesh = SubResource("ArrayMesh_obsaq")
 skeleton = NodePath("")

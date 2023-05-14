@@ -1,11 +1,33 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://b06e82ikjyn4o"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://b06e82ikjyn4o"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_xkk7v"]
+resource_name = "Reverb"
+room_size = 1.0
+damping = 0.0
+spread = 0.0
+dry = 0.85
+wet = 0.24
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_jaay1"]
+resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectRecord" id="AudioEffectRecord_8m3ly"]
+resource_name = "Record"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_lgo11"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_btxah"]
+resource_name = "Filter"
+resonance = 1.0
+gain = 0.93
 
 [resource]
 bus/1/name = &"Effects"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -6.25101
 bus/1/send = &"Master"
 bus/2/name = &"Crowd"
 bus/2/solo = false
@@ -19,9 +41,19 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
-bus/4/name = &"New Bus"
+bus/4/name = &"Annonuncers"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = 0.0
+bus/4/volume_db = -6.25101
 bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectReverb_xkk7v")
+bus/4/effect/0/enabled = false
+bus/4/effect/1/effect = SubResource("AudioEffectPitchShift_jaay1")
+bus/4/effect/1/enabled = false
+bus/4/effect/2/effect = SubResource("AudioEffectRecord_8m3ly")
+bus/4/effect/2/enabled = false
+bus/4/effect/3/effect = SubResource("AudioEffectChorus_lgo11")
+bus/4/effect/3/enabled = false
+bus/4/effect/4/effect = SubResource("AudioEffectFilter_btxah")
+bus/4/effect/4/enabled = false

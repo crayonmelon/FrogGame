@@ -1,13 +1,513 @@
-[gd_scene load_steps=4 format=3 uid="uid://c64vtqvqm0clr"]
+[gd_scene load_steps=35 format=3 uid="uid://c64vtqvqm0clr"]
 
 [ext_resource type="FontFile" uid="uid://djk8n7fmjlere" path="res://Fonts/ColaKind.ttf" id="1_gpogg"]
 [ext_resource type="Script" path="res://Script/mainMenu.gd" id="1_hgi5f"]
-[ext_resource type="Theme" uid="uid://tetwijyjvfyk" path="res://Default.tres" id="1_iukpm"]
+[ext_resource type="Theme" uid="uid://dlx4yti3l6pcy" path="res://Default.tres" id="1_iukpm"]
+[ext_resource type="Script" path="res://Scene/Global_Spawner_Menu.gd" id="2_17mo8"]
+[ext_resource type="Script" path="res://Script/CameraFollowScript.gd" id="4_lc7ka"]
+[ext_resource type="PackedScene" uid="uid://cvjy7rbxwrxxi" path="res://Scene/arena.tscn" id="5_y3iqb"]
+[ext_resource type="FontFile" uid="uid://cs7328aesw8pa" path="res://Fonts/superbrigadechrome.ttf" id="6_1mv8w"]
+[ext_resource type="Texture2D" uid="uid://ihgd64p6mqqu" path="res://spritesheet/explosion/explosion_2.png" id="6_7jrbo"]
+[ext_resource type="PackedScene" uid="uid://c4bd6j37kxtw4" path="res://Scene/Characters/carAI.tscn" id="6_twsom"]
+[ext_resource type="Texture2D" uid="uid://dwgoaf7fqriso" path="res://spritesheet/explosion/explosion_3.png" id="7_yla1o"]
+[ext_resource type="Shader" path="res://Shader/outline.gdshader" id="8_8upk3"]
+[ext_resource type="Texture2D" uid="uid://p3ic5rfgi7dk" path="res://spritesheet/explosion/explosion_4.png" id="8_k5o87"]
+[ext_resource type="Texture2D" uid="uid://deqr778nk8yo7" path="res://spritesheet/crate.png" id="9_wfda6"]
+[ext_resource type="Texture2D" uid="uid://oq64n0pbxo27" path="res://spritesheet/Arena/cageDoor-Sheet.png" id="10_kby4e"]
+[ext_resource type="Texture2D" uid="uid://cmktmbip14nsq" path="res://spritesheet/Arena/vs.png" id="11_aw566"]
 
-[node name="MainMenu" type="Node2D"]
+[sub_resource type="Animation" id="Animation_xubki"]
+resource_name = "CageOpen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Spawn_Area_2/Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 5]
+}
+
+[sub_resource type="Animation" id="Animation_os6oj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Spawn_Area_2/Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cdtv"]
+_data = {
+"CageOpen": SubResource("Animation_xubki"),
+"RESET": SubResource("Animation_os6oj")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e8ddd"]
+viewport_path = NodePath("Global_Spawner/SubViewport")
+
+[sub_resource type="Animation" id="Animation_tnyc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Car4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Car3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Car2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Car:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ahoxa"]
+resource_name = "car_loop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car5:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(0.878431, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Car4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Car3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Car2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(1, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Car:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.133333, 0.12549, 0.203922, 1), Color(0.878431, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qsxo"]
+_data = {
+"RESET": SubResource("Animation_tnyc6"),
+"car_loop": SubResource("Animation_ahoxa")
+}
+
+[sub_resource type="Animation" id="Animation_mxoe0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.72, 4.72)]
+}
+
+[sub_resource type="Animation" id="Animation_aah8c"]
+resource_name = "frog_text"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(0.378929, 2.2974),
+"update": 0,
+"values": [Vector2(4.72, 4.72), Vector2(5.4, 5.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_soris"]
+_data = {
+"RESET": SubResource("Animation_mxoe0"),
+"frog_text": SubResource("Animation_aah8c")
+}
+
+[sub_resource type="Animation" id="Animation_41ob1"]
+resource_name = "car_text-_intro"
+
+[sub_resource type="Animation" id="Animation_afo5j"]
+resource_name = "car_text_loop"
+
+[sub_resource type="Animation" id="Animation_eq32x"]
+resource_name = "intro"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inf7h"]
+_data = {
+"car_text-_intro": SubResource("Animation_41ob1"),
+"car_text_loop": SubResource("Animation_afo5j"),
+"intro": SubResource("Animation_eq32x")
+}
+
+[sub_resource type="Animation" id="Animation_5jcrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../explosion2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../explosion3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_mux8k"]
+resource_name = "explosion"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../explosion2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../explosion3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pfhxi"]
+_data = {
+"RESET": SubResource("Animation_5jcrv"),
+"explosion": SubResource("Animation_mux8k")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfqg3"]
+shader = ExtResource("8_8upk3")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 1.966
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vf4s7"]
+viewport_path = NodePath("CarView")
+
+[node name="World" type="Node3D"]
 script = ExtResource("1_hgi5f")
 
+[node name="Global_Spawner" type="Node3D" parent="."]
+script = ExtResource("2_17mo8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Global_Spawner"]
+root_node = NodePath("../Spawn_Area_1/Sprite3D")
+libraries = {
+"": SubResource("AnimationLibrary_5cdtv")
+}
+
+[node name="Spawn_Area_1" type="Node3D" parent="Global_Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 14)
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner/Spawn_Area_1"]
+transform = Transform3D(-8, -1.99243e-08, 7.70219e-07, 7.65552e-07, 0.697239, 7.96956, -8.69759e-08, 7.96956, -0.697239, 0.406149, 0.116265, 1.32892)
+texture_filter = 0
+texture = ExtResource("10_kby4e")
+hframes = 6
+
+[node name="Spawn_Area_2" type="Node3D" parent="Global_Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 14)
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner/Spawn_Area_2"]
+transform = Transform3D(-8, -1.99243e-08, 7.70219e-07, 7.65552e-07, 0.697239, 7.96956, -8.69759e-08, 7.96956, -0.697239, -0.230949, 0.137362, 1.57006)
+flip_h = true
+texture_filter = 0
+texture = ExtResource("10_kby4e")
+hframes = 6
+frame = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="Global_Spawner"]
+transform = Transform3D(-10.7187, 4.68528e-07, -7.57103e-08, -2.42528e-07, 7.57924, 0.707107, 9.05126e-07, 7.57924, -0.707107, 0, 7, 22)
+texture = SubResource("ViewportTexture_e8ddd")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Grey" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 0.454902)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(487, 379)
+scale = Vector2(33.3125, 24.7812)
+texture = ExtResource("9_wfda6")
+
+[node name="Title" type="Node2D" parent="CanvasLayer"]
+position = Vector2(236, 28)
+scale = Vector2(0.48, 1)
+
+[node name="CarText" type="Node2D" parent="CanvasLayer/Title"]
+
+[node name="CarAnimation" type="AnimationPlayer" parent="CanvasLayer/Title/CarText"]
+autoplay = "car_loop"
+libraries = {
+"": SubResource("AnimationLibrary_1qsxo")
+}
+
+[node name="Car5" type="Label" parent="CanvasLayer/Title/CarText"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 57.0
+offset_top = 125.0
+offset_right = 151.0
+offset_bottom = 163.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("6_1mv8w")
+theme_override_font_sizes/font_size = 32
+text = "Car"
+
+[node name="Car4" type="Label" parent="CanvasLayer/Title/CarText"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 49.0
+offset_top = 117.0
+offset_right = 143.0
+offset_bottom = 155.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("6_1mv8w")
+theme_override_font_sizes/font_size = 32
+text = "Car"
+
+[node name="Car3" type="Label" parent="CanvasLayer/Title/CarText"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 41.0
+offset_top = 108.0
+offset_right = 135.0
+offset_bottom = 146.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("6_1mv8w")
+theme_override_font_sizes/font_size = 32
+text = "Car"
+
+[node name="Car2" type="Label" parent="CanvasLayer/Title/CarText"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 34.0
+offset_top = 102.0
+offset_right = 128.0
+offset_bottom = 140.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("6_1mv8w")
+theme_override_font_sizes/font_size = 32
+text = "Car"
+
+[node name="Car" type="Label" parent="CanvasLayer/Title/CarText"]
+modulate = Color(0.878431, 0, 0, 1)
+texture_filter = 1
+offset_left = 26.0
+offset_top = 93.0
+offset_right = 120.0
+offset_bottom = 131.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("6_1mv8w")
+theme_override_font_sizes/font_size = 32
+text = "Car"
+
+[node name="Frog" type="Label" parent="CanvasLayer/Title"]
+modulate = Color(0.415686, 0.745098, 0.188235, 1)
+texture_filter = 1
+offset_left = 543.75
+offset_top = 219.0
+offset_right = 637.75
+offset_bottom = 264.0
+scale = Vector2(4.72, 4.72)
+theme_override_fonts/font = ExtResource("1_gpogg")
+theme_override_font_sizes/font_size = 32
+text = "Frog"
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Title/Frog"]
+autoplay = "frog_text"
+libraries = {
+"": SubResource("AnimationLibrary_soris")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Title"]
+libraries = {
+"": SubResource("AnimationLibrary_inf7h")
+}
+
+[node name="vs" type="Sprite2D" parent="CanvasLayer/Title"]
+texture_filter = 1
+position = Vector2(295.141, 276.317)
+scale = Vector2(3.88452, 2.44552)
+texture = ExtResource("11_aw566")
 
 [node name="frog+player_button" type="Button" parent="CanvasLayer"]
 texture_filter = 1
@@ -60,6 +560,87 @@ size_flags_vertical = 8
 theme = ExtResource("1_iukpm")
 theme_override_fonts/font = ExtResource("1_gpogg")
 text = "Two Player"
+
+[node name="Explosions" type="Node" parent="CanvasLayer"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Explosions"]
+root_node = NodePath("../explosion")
+libraries = {
+"": SubResource("AnimationLibrary_pfhxi")
+}
+
+[node name="explosion" type="Sprite2D" parent="CanvasLayer/Explosions"]
+visible = false
+position = Vector2(124, 178)
+scale = Vector2(1.56, 1.56)
+texture = ExtResource("6_7jrbo")
+hframes = 5
+vframes = 6
+frame = 27
+
+[node name="explosion2" type="Sprite2D" parent="CanvasLayer/Explosions"]
+visible = false
+position = Vector2(518, 259)
+scale = Vector2(4.45321, -1.70053)
+texture = ExtResource("7_yla1o")
+hframes = 5
+vframes = 3
+frame = 5
+
+[node name="explosion3" type="Sprite2D" parent="CanvasLayer/Explosions"]
+visible = false
+position = Vector2(786, 176)
+scale = Vector2(2.44, 2.44)
+texture = ExtResource("8_k5o87")
+hframes = 4
+vframes = 5
+frame = 1
+
+[node name="Announcers" type="Label" parent="CanvasLayer"]
+z_index = 20
+texture_filter = 1
+offset_left = 831.0
+offset_top = 10.0
+offset_right = 949.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("1_gpogg")
+text = "P for SETTINGS
+"
+
+[node name="EveryCam" type="Camera3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -1.50168e-14, 4.37114e-08, 0.5, 0.866025, 7.57103e-08, 0.866025, -0.5, 0, 16.4515, -7)
+cull_mask = 1
+projection = 1
+size = 20.0
+script = ExtResource("4_lc7ka")
+pos_offset = Vector3(0, 100, -10)
+
+[node name="CarView" type="SubViewport" parent="."]
+transparent_bg = true
+scaling_3d_mode = 1
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 360)
+render_target_update_mode = 4
+
+[node name="CarCam" type="Camera3D" parent="CarView"]
+transform = Transform3D(-1, -6.90814e-08, -4.43256e-10, -3.49246e-08, 0.5, 0.866025, -5.96046e-08, 0.866025, -0.5, 0, 16.4515, -7)
+cull_mask = 2
+projection = 1
+current = true
+size = 20.0
+
+[node name="Arena" parent="." instance=ExtResource("5_y3iqb")]
+
+[node name="Car2" parent="." instance=ExtResource("6_twsom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2, 0)
+
+[node name="MainGame" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_dfqg3")
+position = Vector2(479, 359)
+scale = Vector2(2, 2)
+texture = SubResource("ViewportTexture_vf4s7")
 
 [connection signal="pressed" from="CanvasLayer/frog+player_button" to="." method="_on_frogplayer_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/car_player_button" to="." method="_on_car_player_button_pressed"]

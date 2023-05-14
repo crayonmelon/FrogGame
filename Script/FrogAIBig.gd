@@ -23,3 +23,7 @@ func _on_body_entered(body):
 	
 	if body.has_method("Car_Die"):
 		body.Car_Die()
+		
+		await get_tree().create_timer(2).timeout
+		get_parent().Game_Over()
+		

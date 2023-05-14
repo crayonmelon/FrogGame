@@ -12,6 +12,8 @@ const BREAK_FORCE = 30
 const MAX_SPEED = 20
 var turnSpeed = 2
 
+@export var is_multiplayer = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var rotation_direction = 0
@@ -29,7 +31,7 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if velocity.length() >= 0:
-		rotation_direction = Input.get_axis("p2_right", "p2_left") * delta  * turnSpeed
+		rotation_direction = Input.get_axis("p2_right" if is_multiplayer else "right", "p2_left" if is_multiplayer else "left") * delta  * turnSpeed
 	else:
 		rotation_direction = 0
 	
@@ -45,7 +47,7 @@ func _physics_process(delta):
 	else:
 		velocity = Vector3.ZERO
 		
-	velocity += transform.basis.x * Input.get_axis("p2_up", "p2_down")  * SPEED * delta
+	velocity += transform.basis.x * Input.get_axis("p2_up" if is_multiplayer else "up", "p2_down" if is_multiplayer else "down")  * SPEED * delta
 	velocity = velocity.limit_length(MAX_SPEED)
 	rotate_y(rotation_direction)
 	
@@ -72,5 +74,6 @@ func Car_Die():
 	car_died_inst.rotation = global_rotation
 	
 	get_tree().get_root().add_child(car_died_inst)
+	
 	car_body.queue_free()
 	queue_free()
